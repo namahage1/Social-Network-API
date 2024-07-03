@@ -12,27 +12,26 @@ const thoughtSchema = new Schema(
       min_length: 1,
       max_length: 280
     },
+    username: {
+      type: String,
+      required: true
+    },
     createdAt: {
       type: Date,
       default: Date.now,
       get:formatDate
     },
     reactions : [reactionSchema],
-    // reactions: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'reaction',
-    //   },
-    // ], TODO: Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
   },
   {
     toJSON: {
       virtuals: true,
     },
-    id: false,
   }
 );
-
-const Course = model('thought', thoughtSchema);
+thoughtSchema.virtual('reactionCount').get(function() {
+  return this.reactions.length;
+});
+const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;

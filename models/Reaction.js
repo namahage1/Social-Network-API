@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 
 function formatDate(date) {
   return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
@@ -14,7 +14,7 @@ const reactionSchema = new Schema(
     reactionBody: {
       type: String,
       required: true,
-      max_length: 280,
+      maxlength: 280,
     },
     username: {
       type: String,
