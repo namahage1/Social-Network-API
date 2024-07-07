@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema,Type} = require('mongoose');
 
 function formatDate(date) {
   return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
@@ -37,6 +37,4 @@ const reactionSchema = new Schema(
   }
 );
 
-const Reaction = model('reaction', reactionSchema);
-
-module.exports = Reaction;
+module.exports = reactionSchema;
