@@ -1,16 +1,18 @@
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
+
 function formatDate(date) {
   return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 }
-// Schema to create a course model
+
+// Schema to create a thought model
 const thoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
       required: true,
-      min_length: 1,
-      max_length: 280
+      minlength: 1,
+      maxlength: 280
     },
     username: {
       type: String,
@@ -19,9 +21,9 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get:formatDate
+      get: formatDate
     },
-    reactions : [reactionSchema],
+    reactions: [reactionSchema],
   },
   {
     toJSON: {
@@ -29,9 +31,11 @@ const thoughtSchema = new Schema(
     },
   }
 );
+
 thoughtSchema.virtual('reactionCount').get(function() {
   return this.reactions.length;
 });
+
 const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;

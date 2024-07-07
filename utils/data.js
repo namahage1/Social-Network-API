@@ -1,10 +1,10 @@
 const usernames = [
-  'johnDoe',
-  'janeDoe',
-  'aliceSmith',
-  'bobJones',
-  'charlieBrown',
-  'davidClark'
+  'testuser1',
+  'testuser2',
+  'testuser3',
+  'testuser4',
+  'testuser5',
+  'testuser6'
 ];
 
 const thoughtsText = [

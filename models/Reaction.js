@@ -1,4 +1,4 @@
-const { Schema,Type} = require('mongoose');
+const { Schema, Types } = require('mongoose');
 
 function formatDate(date) {
   return date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
@@ -8,7 +8,7 @@ function formatDate(date) {
 const reactionSchema = new Schema(
   {
     reactionId: {
-      type: Schema.Types.ObjectId,
+      type: Types.ObjectId,
       default: () => new Types.ObjectId(),
     },
     reactionBody: {
@@ -23,16 +23,15 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get:formatDate
+      get: formatDate
     }
-   
   },
   {
     toJSON: {
       getters: true,
     },
-    toObject:{
-      getters:true
+    toObject: {
+      getters: true
     }
   }
 );
