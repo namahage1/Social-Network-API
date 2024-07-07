@@ -8,21 +8,21 @@ const usernames = [
 ];
 
 const thoughtsText = [
-  'This is a thought from John.',
-  'This is a thought from Jane.',
-  'This is a thought from Alice.',
-  'This is a thought from Bob.',
-  'This is a thought from Charlie.',
-  'This is a thought from David.'
+  'This is a thought 1',
+  'This is a thought 2',
+  'This is a thought 3',
+  'This is a thought 4',
+  'This is a thought 5',
+  'This is a thought 6'
 ];
 
 const reactionText = [
-  'Great thought!',
-  'Interesting!',
-  'Nice one!',
-  'Well said!',
-  'I agree!',
-  'Awesome!'
+  'This is reaction 1',
+  'This is reaction 2',
+  'This is reaction 3',
+  'This is reaction 4',
+  'This is reaction 5',
+  'This is reaction 6'
 ];
 
 // Get a random item given an array
