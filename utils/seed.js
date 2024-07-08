@@ -44,9 +44,18 @@ connection.once('open', async () => {
     );
   }
 
+  for (let i = 0; i < userData.length; i++) {
+    const randomUser = userData[Math.floor(Math.random() * userData.length)]
+    const user = await User.findOneAndUpdate(
+      { username: userData[i].username },
+      { $addToSet: { friends: randomUser._id} },
+      { new: true }
+    );
+  }
+
   // Log out the seed data to indicate what should appear in the database
-  console.table(users);
-  console.table(thoughts);
+  // console.table(users);
+  // console.table(thoughts);
   console.info('Seeding complete! 🌱');
   process.exit(0);
 });

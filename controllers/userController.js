@@ -4,7 +4,7 @@ module.exports = {
   // Get all users
   async getUsers(req, res) {
     try {
-      const users = await User.find().populate('users');
+      const users = await User.find().populate('friends').populate('thoughts');
       res.json(users);
     } catch (err) {
       res.status(500).json(err);
@@ -14,7 +14,7 @@ module.exports = {
   async getSingleUser(req, res) {
     try {
       const user = await User.findOne({ _id: req.params.userId })
-        .populate('users');
+      .populate('friends').populate('thoughts');
 
       if (!user) {
         return res.status(404).json({ message: 'No user with that ID' });
@@ -44,8 +44,9 @@ module.exports = {
         res.status(404).json({ message: 'No user with that ID' });
       }
 
-      await User.deleteMany({ _id: { $in: user.users } });
-      res.json({ message: 'User and users deleted!' });
+      await Thought.deleteMany({ _id: { $in: user.thoughts } });
+
+      res.json({ message: 'User and thoughts deleted!' });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -56,6 +57,50 @@ module.exports = {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
         { $set: req.body },
+        { runValidators: true, new: true }
+      );
+
+      if (!user) {
+        res.status(404).json({ message: 'No user with this id!' });
+      }
+
+      res.json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+
+  // Adding a friend to a user
+  async addFriend(req, res) {
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $push: {
+          friends: req.params.friendId
+        } },
+        { runValidators: true, new: true }
+      );
+
+      if (!user) {
+        res.status(404).json({ message: 'No user with this id!' });
+      }
+
+      res.json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+
+  // Removing a friend to a user
+  async removeFriend(req, res) {
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $pull: {
+          friends: req.params.friendId
+        } },
         { runValidators: true, new: true }
       );
 

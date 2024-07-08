@@ -25,6 +25,14 @@ const reactionText = [
   'This is reaction 6'
 ];
 
+const friends = [
+  'Friend 1',
+  'Friend 2',
+  'Friend 3',
+  'Friend 4',
+  'Friend 5',
+  'Friend 6'
+];
 // Get a random item given an array
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
