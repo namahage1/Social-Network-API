@@ -1,11 +1,27 @@
 const { Thought, User } = require('../models');
 
+// Aggregate function to get the number of users overall
+const headCount = async () => {
+  const users = await User.find();
+  let totalFriends = 0;
+
+  users.forEach(user => {
+    totalFriends += user.friends.length;
+  });
+  return totalFriends;
+}
+
 module.exports = {
   // Get all users
   async getUsers(req, res) {
     try {
       const users = await User.find().populate('friends').populate('thoughts');
-      res.json(users);
+      const totalFriends = await headCount();
+      const userObj = {
+        users,
+        headCount: totalFriends,
+      };
+      res.json(userObj);
     } catch (err) {
       res.status(500).json(err);
     }
