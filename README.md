@@ -4,7 +4,7 @@
 
 - This API is for the website which can handle large amount of unstructured data by storing in NoSQL
 
-## Table of Contents (Optional)
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
