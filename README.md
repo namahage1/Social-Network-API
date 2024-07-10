@@ -25,3 +25,5 @@
 - controllers/* :contain the logic that handles the requests coming from the routes   
 - utils/ * : files for seeding when `npm run seed`
 
+- video link : https://app.screencastify.com/v3/watch/FzgNuqcRLRbgnvszXR10
+- repo link : https://github.com/namahage1/Social-Network-API.git
